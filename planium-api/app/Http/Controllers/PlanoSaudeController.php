@@ -7,7 +7,17 @@ use Illuminate\Http\Request;
 class PlanoSaudeController extends Controller
 {
     public function index(){
-        return view('welcome');
+
+        $planos = array();
+        $json = file_get_contents("../json/plans.json");
+        $data = json_decode($json);
+
+        for ($i=0; $i < count($data); $i++) { 
+            array_push($planos, $data[$i]);
+        }
+
+        return view('welcome',["planos"=>$planos]);
+        
     }
 
     public function registro(Request $request){
@@ -48,7 +58,28 @@ class PlanoSaudeController extends Controller
         fwrite($file, $json);
         fclose($file);
 
-        return redirect('/')->with('msg','Registro de plano de saúde realizado com sucesso!');
+        $prices = file_get_contents("../json/prices.json");
+        $prices = json_decode($prices);
+
+        function getPreco($plano,$quant,$prices){
+            $arr = array();
+            for ($i=0; $i < count($prices); $i++) { 
+                if($prices[$i]->codigo == $plano){
+                    array_push($arr, $prices[$i]);
+                }
+            }
+            return $arr;
+
+        }
+
+
+        
+        
+
+        return getPreco(1,2,$prices);
+
+
+        #return redirect('/')->with('msg','Registro de plano de saúde realizado com sucesso!');
         
     }
 }

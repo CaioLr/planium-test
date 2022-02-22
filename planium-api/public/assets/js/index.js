@@ -1,6 +1,19 @@
 let counter = 1;
 
+
 document.getElementById("add_pessoa").addEventListener("click", function() {
+
+    const myNodeList = document.getElementById('plano_1').querySelectorAll("option");
+
+    console.log(myNodeList.length);
+
+
+    let option =''
+    for(i=0; i< myNodeList.length;i++){
+        option += `<option value="${myNodeList[i].value}">${myNodeList[i].label}</option>`;
+    }
+
+    console.log(option)
 
     counter++;
     let string = `
@@ -23,13 +36,9 @@ document.getElementById("add_pessoa").addEventListener("click", function() {
                 </div>
                 <div class="form-group">
                     <label for="idade">Escolha seu plano</label>
-                    <select class="form-select" id="plano_${counter}" name="plano_${counter}" aria-label="Plano:">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
+                    <select class="form-select" id="plano_${counter}" name="plano_${counter}" aria-label="Plano:">`
+                       +option+
+                    `
                     </select>
                 </div>
         </div>

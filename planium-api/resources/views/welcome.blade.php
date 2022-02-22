@@ -78,12 +78,9 @@
                                     <div class="form-group">
                                         <label for="idade">Escolha seu plano</label>
                                         <select class="form-select" id="plano_1" name="plano_1" aria-label="Plano:">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
+                                            @foreach($planos as $plano)
+                                                <option value="{{$plano->codigo}}">{{$plano->nome}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                             </div>
