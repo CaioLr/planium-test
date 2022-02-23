@@ -1,0 +1,21 @@
+[
+    {
+        "quant_beneficiarios": "3",
+        "beneficiarios": [
+            { "nome": "Caio", "idade": "32", "plano": "3", "preco": 40 },
+            { "nome": "Eduardo", "idade": "42", "plano": "4", "preco": 60 },
+            { "nome": "sim", "idade": "54", "plano": "5", "preco": 70 }
+        ],
+        "preco_total": 170
+    },
+    {
+        "quant_beneficiarios": "4",
+        "beneficiarios": [
+            { "nome": "Caio", "idade": "1", "plano": "1", "preco": 9 },
+            { "nome": "Eduardo", "idade": "20", "plano": "1", "preco": 11 },
+            { "nome": "sim", "idade": "57", "plano": "1", "preco": 14 },
+            { "nome": "Ele", "idade": "32", "plano": "1", "preco": 11 }
+        ],
+        "preco_total": 45
+    }
+]
