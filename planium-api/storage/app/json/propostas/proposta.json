@@ -1,0 +1,19 @@
+[
+    {
+        "id": 0,
+        "quant_beneficiarios": "2",
+        "beneficiarios": [
+            { "nome": "Caio", "idade": "43", "plano": "4", "preco": 60 },
+            { "nome": "Eduardo", "idade": "51", "plano": "5", "preco": 70 }
+        ],
+        "preco_total": 130
+    },
+    {
+        "id": 1,
+        "quant_beneficiarios": "1",
+        "beneficiarios": [
+            { "nome": "Caio", "idade": "53", "plano": "4", "preco": 60 }
+        ],
+        "preco_total": 60
+    }
+]
