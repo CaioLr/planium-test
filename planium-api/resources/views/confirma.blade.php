@@ -14,29 +14,8 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-
+        <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
        
-        <style>
-            header{
-                background-color: gray;
-            
-            }
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
-            #form-create-container{
-                margin-top: 50px;
-            }
-            .form-group{
-                margin-bottom: 10px;
-            }
-            .msg{
-                background-color: #D4EDDA;
-                text-align: center;
-                margin-bottom: 0;
-                padding: 10px;
-            }
-        </style>
     </head>
     <header>
         <div>

@@ -17,32 +17,8 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-
-       
-        <style>
-            header{
-                background-color: gray;
-            
-            }
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
-            #form-create-container{
-                margin-top: 50px;
-            }
-            .form-group{
-                margin-bottom: 10px;
-            }
-            .msg{
-                background-color: #D4EDDA;
-                text-align: center;
-                margin-bottom: 0;
-                padding: 10px;
-            }
-            .error_text{
-                text-align: center;
-            }
-        </style>
+        <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    
     </head>
     <header>
         <div>
@@ -54,7 +30,7 @@
 
         @if ($errors->any())
             <div class="alert alert-danger">
-                <p class="error_text">Preencha todos os campos obrigatórios.</p>
+                <p class="error_text">Verifique o preenchimento dos campos.</p>
             </div>
         @endif
 

@@ -11,7 +11,7 @@ class PlanoSaudeController extends Controller
 {
     #função que calcula o preço de cada pessoa
     private function getPreco($plano,$quant,$idade,$prices){
- 
+    
         $arr = array();
         #somente codigos correspondente
         for ($i=0; $i < count($prices); $i++) { 
@@ -48,7 +48,6 @@ class PlanoSaudeController extends Controller
         }elseif($idade >= 41 ){
             return $arr[$index_price]->faixa3;
         }
-
     }
 
     public function index(){
@@ -67,17 +66,25 @@ class PlanoSaudeController extends Controller
 
     public function confirma(Request $request){
 
+        $planos = array();
+        $json = file_get_contents("../storage/app/json/plans.json");
+        $data = json_decode($json);
+
+        $plans_count = count($data);
+
         #Validando os inputs
         $array_validator = array();
         $values = array();
         for ($i=1; $i <= $request->input("quant"); $i++) { 
             array_push($array_validator,
                 "name_$i",
-                "age_$i"
+                "age_$i",
+                "plano_$i"
             );
             array_push($values,
                 "required",
-                "required"
+                "required|numeric|integer|min:0",
+                "required|numeric|between:1,$plans_count"
             );
            
         }
@@ -136,7 +143,8 @@ class PlanoSaudeController extends Controller
     }
 
     public function registro(Request $request){
-#Criando beneficiarios.json
+
+    #Criando beneficiarios.json
         $data = array();
         #le conteudo existente em beneficiarios.json
 
@@ -183,7 +191,7 @@ class PlanoSaudeController extends Controller
         fwrite($file, $json);
         fclose($file);
 
-#Criando proposta.json
+    #Criando proposta.json
         #lendo prices.json
         $prices = file_get_contents("../storage/app/json/prices.json");
         $prices = json_decode($prices);
@@ -255,8 +263,6 @@ class PlanoSaudeController extends Controller
         fclose($file_proposta);
 
         return redirect('/')->with('msg','Registro de plano de saúde realizado com sucesso!');
-
-       
-        
     }
+
 }

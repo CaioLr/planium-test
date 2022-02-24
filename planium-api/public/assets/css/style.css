@@ -1,0 +1,22 @@
+header{
+    background-color: gray;
+
+}
+body {
+    font-family: 'Nunito', sans-serif;
+}
+#form-create-container{
+    margin-top: 50px;
+}
+.form-group{
+    margin-bottom: 10px;
+}
+.msg{
+    background-color: #D4EDDA;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 10px;
+}
+.error_text{
+    text-align: center;
+}
