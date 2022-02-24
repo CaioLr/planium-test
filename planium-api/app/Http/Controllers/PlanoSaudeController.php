@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PlanoSaudeRequest;
+
+use Illuminate\Support\Facades\Validator;
 
 class PlanoSaudeController extends Controller
 {
     #função que calcula o preço de cada pessoa
     private function getPreco($plano,$quant,$idade,$prices){
-        #plano=1, quant=4, 
+ 
         $arr = array();
         #somente codigos correspondente
         for ($i=0; $i < count($prices); $i++) { 
@@ -51,21 +54,48 @@ class PlanoSaudeController extends Controller
     public function index(){
 
         $planos = array();
-        $json = file_get_contents("../json/plans.json");
+        $json = file_get_contents("../storage/app/json/plans.json");
         $data = json_decode($json);
 
         for ($i=0; $i < count($data); $i++) { 
             array_push($planos, $data[$i]);
         }
 
-        return view('welcome',["planos"=>$planos]);
+        return view('index',["planos"=>$planos]);
         
     }
 
     public function confirma(Request $request){
 
+        #Validando os inputs
+        $array_validator = array();
+        $values = array();
+        for ($i=1; $i <= $request->input("quant"); $i++) { 
+            array_push($array_validator,
+                "name_$i",
+                "age_$i"
+            );
+            array_push($values,
+                "required",
+                "required"
+            );
+           
+        }
+        $array_validator = array_combine($array_validator,$values);
+
+        
+        $validator = Validator::make($request->all(),$array_validator);
+   
+
+        if ($validator->fails()) {
+            return redirect('/')
+                        ->with("quant",$request->input("quant"))
+                        ->withErrors($validator)
+                        ->withInput($request->except('_token'));
+        }
+
         #lendo prices.json
-        $prices = file_get_contents("../json/prices.json");
+        $prices = file_get_contents("../storage/app/json/prices.json");
         $prices = json_decode($prices);
 
         #formatando dados arquivo proposta.json
@@ -110,7 +140,7 @@ class PlanoSaudeController extends Controller
         $data = array();
         #le conteudo existente em beneficiarios.json
 
-        $json_pre = file_get_contents("../json/beneficiarios/beneficiarios.json");
+        $json_pre = file_get_contents("../storage/app/json/beneficiarios/beneficiarios.json");
         $data_2 = json_decode($json_pre);
         
         $id = 0;
@@ -148,14 +178,14 @@ class PlanoSaudeController extends Controller
 
         #escrevendo no arquivo
 
-        $file = fopen('../json/beneficiarios/beneficiarios.json','w');
+        $file = fopen('../storage/app/json/beneficiarios/beneficiarios.json','w');
         
         fwrite($file, $json);
         fclose($file);
 
 #Criando proposta.json
         #lendo prices.json
-        $prices = file_get_contents("../json/prices.json");
+        $prices = file_get_contents("../storage/app/json/prices.json");
         $prices = json_decode($prices);
 
 
@@ -189,7 +219,7 @@ class PlanoSaudeController extends Controller
         $data_proposta = array();
         #le conteudo existente em proposta.json
 
-        $json_pre_proposta = file_get_contents("../json/propostas/proposta.json");
+        $json_pre_proposta = file_get_contents("../storage/app/json/propostas/proposta.json");
         $data_2_proposta = json_decode($json_pre_proposta);
         
         #coloca conteudo existente em $data_proposta
@@ -219,7 +249,7 @@ class PlanoSaudeController extends Controller
 
         #escrevendo no arquivo
 
-        $file_proposta = fopen('../json/propostas/proposta.json','w');
+        $file_proposta = fopen('../storage/app/json/propostas/proposta.json','w');
         
         fwrite($file_proposta, $json_proposta);
         fclose($file_proposta);

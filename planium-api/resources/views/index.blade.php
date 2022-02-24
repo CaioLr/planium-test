@@ -39,6 +39,9 @@
                 margin-bottom: 0;
                 padding: 10px;
             }
+            .error_text{
+                text-align: center;
+            }
         </style>
     </head>
     <header>
@@ -48,6 +51,12 @@
         </div>
     </header>
     <body>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <p class="error_text">Preencha todos os campos obrigatórios.</p>
+            </div>
+        @endif
 
         <div class="container-fluid">
             <div class="row">
@@ -62,40 +71,56 @@
             <form action="/confirmar" method="POST">
             @csrf
 
-                <div class="accordion accordion-flush mb-2" id="accordionFlush">
+                <div class="accordion accordion-flush mb-2" id="accordionFlush" data-count="{{session('quant')??1}}">
+                    @php
+                        $quant = session('quant')??1;
+                    @endphp
+                    @for($i=1; $i <= $quant ;$i++)
+
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-heading_1">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse_1" aria-expanded="false" aria-controls="flush-collapse_1">
+                        <h2 class="accordion-header" id="flush-heading_{{$i}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse_{{$i}}" aria-expanded="false" aria-controls="flush-collapse_{{$i}}">
                                     Beneficiário
                             </button>
                         </h2>
-                        <div id="flush-collapse_1" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
+                        <div id="flush-collapse_{{$i}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
                             <div class="accordion-body">
                                 
                                     <div class="form-group">
                                         <label for="nome">Nome</label>
-                                        <input type="text" class="form-control" id="name_1" name="name_1">
+                                        <input type="text" class="form-control @error('name_'.$i) is-invalid @enderror"  id="name_{{$i}}" name="name_{{$i}}" value="{{old('name_'.$i)}}">
+                                        @error('name_'.$i)
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="idade">Idade</label>
-                                        <input type="number" class="form-control" id="age_1" name="age_1">
+                                        <input type="number" class="form-control @error('age_'.$i) is-invalid @enderror" id="age_{{$i}}" name="age_{{$i}}" value="{{old('age_'.$i)}}">
+                                        @error('age_'.$i)
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="idade">Escolha seu plano</label>
-                                        <select class="form-select" id="plano_1" name="plano_1" aria-label="Plano:">
+                                        <select class="form-select" id="plano_{{$i}}" name="plano_{{$i}}" aria-label="Plano:">
                                             @foreach($planos as $plano)
-                                                <option value="{{$plano->codigo}}">{{$plano->nome}}</option>
+                                                <option value="{{$plano->codigo}}" @if(old('plano_'.$i) == $plano->codigo) selected @endif>{{$plano->nome}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                             </div>
                         </div>
                     </div>
+                    @endfor
                 </div>
                 <div class="mb-2 row">
                     <label for="quant" class="col-sm-4 col-form-label">Quantidade de beneficiários:  </label>
                         <div class="col-sm-1">
-                            <input type="text" readonly class="form-control-plaintext" id="quant" name="quant" value="1">
+                            <input type="text" readonly class="form-control-plaintext" id="quant" name="quant" value="{{$i-1}}">
                         </div>
                 </div>
 
@@ -104,6 +129,7 @@
             <input type="button" id="delete_pessoa" name="delete_pessoa" class="btn btn-danger" value="Remover Beneficiário">
             </form>
         </div>
+
 
         <script src="{{ asset('assets/js/index.js') }}"></script>
     </body>

@@ -15,7 +15,7 @@ use App\Http\Controllers\PlanoSaudeController;
 |
 */
 
-Route::get('/',[PlanoSaudeController::class, 'index'])->name('index');;
+Route::get('/',[PlanoSaudeController::class, 'index'])->name('index');
 
 Route::post('/confirmar',[PlanoSaudeController::class, 'confirma']);
 
