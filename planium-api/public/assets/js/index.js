@@ -1,19 +1,16 @@
+
 let counter = 1;
 
 
 document.getElementById("add_pessoa").addEventListener("click", function() {
 
-    const myNodeList = document.getElementById('plano_1').querySelectorAll("option");
-
-    console.log(myNodeList.length);
-
+    let myNodeList = document.getElementById('plano_1').querySelectorAll("option");
 
     let option =''
     for(i=0; i< myNodeList.length;i++){
         option += `<option value="${myNodeList[i].value}">${myNodeList[i].label}</option>`;
     }
 
-    console.log(option)
 
     counter++;
     let string = `
@@ -57,4 +54,12 @@ document.getElementById("add_pessoa").addEventListener("click", function() {
     
   });
 
+  document.getElementById("delete_pessoa").addEventListener("click", function(){
+    let myNodeList = document.getElementById('accordionFlush').querySelectorAll("div.accordion-item");
 
+    if (myNodeList.length > 1) {
+        myNodeList[myNodeList.length-1].parentNode.removeChild( myNodeList[myNodeList.length-1]);
+        counter--;
+        document.getElementById('quant').value = counter;
+    }
+  });
