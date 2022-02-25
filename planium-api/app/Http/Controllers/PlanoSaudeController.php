@@ -118,6 +118,16 @@ class PlanoSaudeController extends Controller
            ));
         }
 
+        #array com os codigos do plano escolhido
+        $codigos = array();
+        for ($i=1; $i <= $request->input("quant"); $i++) { 
+            array_push($codigos,$request->input("plano_$i"));
+        }
+
+        #calculando quantos codigos repetidos, e guardando em $quant_codigos
+        $quant_codigos = array_count_values($codigos);
+ 
+
         #formatando dados arquivo proposta.json
         $array_aux_proposta = array();
         for ($i=1; $i <= $request->input("quant"); $i++) { 
@@ -128,7 +138,7 @@ class PlanoSaudeController extends Controller
                     "plano"=> $plans_aux[$num-1]["$num"],
                     "preco"=> $this->getPreco(
                         $request->input("plano_$i"),
-                        $request->input("quant"),
+                        $quant_codigos["$num"],
                         $request->input("age_$i"),
                         $prices
                     )
@@ -210,27 +220,45 @@ class PlanoSaudeController extends Controller
         $prices = file_get_contents("../storage/app/json/prices.json");
         $prices = json_decode($prices);
 
+        #lendo plans.json
+        $plans = file_get_contents("../storage/app/json/plans.json");
+        $plans = json_decode($plans);
+
+        #array com os nomes recebido do input
+        $nomes = array();
+        for ($i=1; $i <= $request->input("quant"); $i++) { 
+            array_push($nomes,$request->input("plano_$i"));
+        }
+
 
         #array com os codigos do plano escolhido
         $codigos = array();
-        for ($i=1; $i <= $request->input("quant"); $i++) { 
-            array_push($codigos,$request->input("plano_$i"));
+
+        foreach($nomes as $nome){
+            foreach($plans as $plan){
+                if($plan->nome == $nome){
+                    array_push($codigos,$plan->codigo);
+                }
+            }
+            
         }
 
         #calculando quantos codigos repetidos, e guardando em $quant_codigos
         $quant_codigos = array_count_values($codigos);
 
+
         #formatando dados arquivo proposta.json
         $array_aux_proposta = array();
 
         for ($i=1; $i <= $request->input("quant"); $i++) { 
+            $num = $codigos[$i-1];
             array_push($array_aux_proposta,array(
                     "nome" => $request->input("name_$i"),
                     "idade"=> $request->input("age_$i"),
                     "plano"=> $request->input("plano_$i"),
                     "preco"=> $this->getPreco(
-                        $request->input("plano_$i"),
-                        $request->input("quant"),
+                        $codigos[$i-1],
+                        $quant_codigos["$num"],
                         $request->input("age_$i"),
                         $prices
                     )

@@ -3,17 +3,125 @@
         "id": 0,
         "quant_beneficiarios": "2",
         "beneficiarios": [
-            { "nome": "Caio", "idade": "43", "plano": "4", "preco": 60 },
-            { "nome": "Eduardo", "idade": "51", "plano": "5", "preco": 70 }
+            {
+                "nome": "Caio",
+                "idade": "32",
+                "plano": "Bitix Customer Plano 6",
+                "preco": 65
+            },
+            {
+                "nome": "Eduardo",
+                "idade": "10",
+                "plano": "Bitix Customer Plano 6",
+                "preco": 55
+            }
         ],
-        "preco_total": 130
+        "preco_total": 120
     },
     {
         "id": 1,
         "quant_beneficiarios": "1",
         "beneficiarios": [
-            { "nome": "Caio", "idade": "53", "plano": "4", "preco": 60 }
+            {
+                "nome": "Caio",
+                "idade": "65",
+                "plano": "Bitix Customer Plano 2",
+                "preco": 40
+            }
         ],
-        "preco_total": 60
+        "preco_total": 40
+    },
+    {
+        "id": 2,
+        "quant_beneficiarios": "4",
+        "beneficiarios": [
+            {
+                "nome": "Caio",
+                "idade": "23",
+                "plano": "Bitix Customer Plano 1",
+                "preco": 11
+            },
+            {
+                "nome": "Eduardo",
+                "idade": "32",
+                "plano": "Bitix Customer Plano 1",
+                "preco": 11
+            },
+            {
+                "nome": "Furtado",
+                "idade": "60",
+                "plano": "Bitix Customer Plano 1",
+                "preco": 14
+            },
+            {
+                "nome": "Leite",
+                "idade": "34",
+                "plano": "Bitix Customer Plano 1",
+                "preco": 11
+            }
+        ],
+        "preco_total": 47
+    },
+    {
+        "id": 3,
+        "quant_beneficiarios": "4",
+        "beneficiarios": [
+            {
+                "nome": "Caio",
+                "idade": "12",
+                "plano": "Bitix Customer Plano 1",
+                "preco": 10
+            },
+            {
+                "nome": "Eduardo",
+                "idade": "43",
+                "plano": "Bitix Customer Plano 1",
+                "preco": 15
+            },
+            {
+                "nome": "Furtado",
+                "idade": "32",
+                "plano": "Bitix Customer Plano 5",
+                "preco": 60
+            },
+            {
+                "nome": "Leite",
+                "idade": "53",
+                "plano": "Bitix Customer Plano 3",
+                "preco": 50
+            }
+        ],
+        "preco_total": 135
+    },
+    {
+        "id": 4,
+        "quant_beneficiarios": "4",
+        "beneficiarios": [
+            {
+                "nome": "Caio",
+                "idade": "1",
+                "plano": "Bitix Customer Plano 1",
+                "preco": 9
+            },
+            {
+                "nome": "Eduardo",
+                "idade": "1",
+                "plano": "Bitix Customer Plano 1",
+                "preco": 9
+            },
+            {
+                "nome": "Furtado",
+                "idade": "1",
+                "plano": "Bitix Customer Plano 1",
+                "preco": 9
+            },
+            {
+                "nome": "Leite",
+                "idade": "1",
+                "plano": "Bitix Customer Plano 1",
+                "preco": 9
+            }
+        ],
+        "preco_total": 36
     }
 ]

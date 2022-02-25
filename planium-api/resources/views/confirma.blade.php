@@ -72,7 +72,7 @@
         
                 <div class="mb-2 row">
                     <label for="precototal" class="col-sm-4 col-form-label"><h4>Preço total:</h4> </label>
-                        <div class="col-sm-1">
+                        <div class="col-sm-8">
                             <input type="text" readonly class="form-control-plaintext" id="precototal" name="precototal" value="{{ $dados[0]['preco_total'] }}">
                         </div>
                 </div>
