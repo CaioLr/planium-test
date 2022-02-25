@@ -23,5 +23,22 @@ API que permite a inserção de dados dos beneficiários (pessoas participantes/
 - Views se encontram na pasta: <a href="https://github.com/CaioLr/planium-test/tree/main/planium-api/resources/views">planium-test/planium-api/resources/views/</a>
 - Assets utilizados (arquivos CSS e JavaScript) se encontram na pasta: <a href="https://github.com/CaioLr/planium-test/tree/main/planium-api/public/assets">planium-test/planium-api/public/assets/</a>
 
+## Instalação
+
+### Clone o repositório
+    $ git clone https://github.com/CaioLr/planium-test.git
+### Acesse a pasta do projeto (planium-api)
+    $ cd planium-api
+### Instale as dependências
+    $ composer install
+### Copie o arquivo .env-example para um arquivo .env
+    $ cp .env.example .env
+### Gere uma chave para a aplicação
+    $ php artisan key:generate
+### Aplicação instalada, para iniciar o servidor pode utilizar:
+    $ php artisan serve
+   
+
+
 
 
