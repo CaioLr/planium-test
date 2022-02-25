@@ -58,7 +58,7 @@
                 </div>
                 <div class="mb-2 row">
                     <label for="plano_{{$counter}}" class="col-sm-2 col-form-label">Plano escolhido:</label>
-                        <div class="col-sm-1">
+                        <div class="col-sm-10">
                             <input type="text" readonly class="form-control-plaintext" id="plano_{{$counter}}" name="plano_{{$counter}}" value="{{ $dados2['plano'] }}">
                         </div>
                 </div>

@@ -6,7 +6,7 @@ Nome: Caio Eduardo Furtado Leite Lanceta Ramos.
 
 Código para realização do teste: https://github.com/Luziarte-Planium/planium-test.
 
-API que permite a inserção de dados dos beneficiários (pessoas participantes/pagantes de um plano de saúde), validando a entrada de dados, caso aconteça um erro durante o preenchimento do formulário, é demonstrado ao usuário o erro cometido, caso não ocorra nenhum erro, o usuário recebe suas informações preenchidas, com o preço de cada beneficiário e o preço total, confirmando os dados o usuário é encaminhado novamente para a página inicial como uma mensagem indicando o sucesso do processo. Quando os dados são confirmados o sistema recebe informações dos arquivos "plans.jon" e "prices.json" para calcular e enviar as informações socilitadas pelo teste para os arquivos "beneficiarios.json" e "proposta.json".
+API que permite a inserção de dados dos beneficiários (pessoas participantes/pagantes de um plano de saúde), validando a entrada de dados, caso aconteça um erro durante o preenchimento do formulário, é demonstrado ao usuário o erro cometido, caso não ocorra nenhum erro, o usuário recebe suas informações preenchidas, com o preço de cada beneficiário e o preço total, confirmando os dados o usuário é encaminhado novamente para a página inicial como uma mensagem indicando o sucesso do processo. Quando os dados são confirmados o sistema recebe informações dos arquivos "plans.jon" e "prices.json" para calcular (a partir do plano, idade e quantidade de beneficiários) e enviar as informações socilitadas pelo teste para os arquivos "beneficiarios.json" e "proposta.json".
 
 **Ferramentas e frameworks utilizados:**
 - HTML

@@ -52,6 +52,7 @@ class PlanoSaudeController extends Controller
 
     public function index(){
 
+        #recebendo plans.json
         $planos = array();
         $json = file_get_contents("../storage/app/json/plans.json");
         $data = json_decode($json);
@@ -66,6 +67,7 @@ class PlanoSaudeController extends Controller
 
     public function confirma(Request $request){
 
+        #recebendo plans.json
         $planos = array();
         $json = file_get_contents("../storage/app/json/plans.json");
         $data = json_decode($json);
@@ -105,13 +107,25 @@ class PlanoSaudeController extends Controller
         $prices = file_get_contents("../storage/app/json/prices.json");
         $prices = json_decode($prices);
 
+        #lendo plans.json
+        $plans = file_get_contents("../storage/app/json/plans.json");
+        $plans = json_decode($plans);
+
+        $plans_aux = array();
+        for ($i=1; $i <= count($plans); $i++) { 
+           array_push($plans_aux, array(
+                "$i" => $plans[$i-1]->nome
+           ));
+        }
+
         #formatando dados arquivo proposta.json
         $array_aux_proposta = array();
         for ($i=1; $i <= $request->input("quant"); $i++) { 
+            $num = $request->input("plano_$i");
             array_push($array_aux_proposta,array(
                     "nome" => $request->input("name_$i"),
                     "idade"=> $request->input("age_$i"),
-                    "plano"=> $request->input("plano_$i"),
+                    "plano"=> $plans_aux[$num-1]["$num"],
                     "preco"=> $this->getPreco(
                         $request->input("plano_$i"),
                         $request->input("quant"),
