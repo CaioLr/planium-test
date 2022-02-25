@@ -24,6 +24,7 @@ API que permite a inserção de dados dos beneficiários (pessoas participantes/
 - Assets utilizados (arquivos CSS e JavaScript) se encontram na pasta: <a href="https://github.com/CaioLr/planium-test/tree/main/planium-api/public/assets">planium-test/planium-api/public/assets/</a>
 
 ## Instalação
+Obs: Necessita do PHP e Composer (https://getcomposer.org/) instalados.
 
 ### Clone o repositório
     $ git clone https://github.com/CaioLr/planium-test.git
